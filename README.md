@@ -1,3 +1,9 @@
+
+원본 - https://github.com/hdinsight/tpcds-hdinsight
+
+을 참고하여 Orc 대신 Parquet 파일로 변환하여 수행하는 코드로 수정한 버전입니다.
+
+
 # 1. Clone this repo
    git clone https://github.com/hdinsight/tpcds-hdinsight/ && cd tpcds-hdinsight
 # 2. Run TPCDSDataGen.hql with settings.hql file and set the required config variables
