@@ -11,7 +11,7 @@
    hive -i settings.hql -f ddl/createAllExternalTables.hql -hiveconf LOCATION=/HiveTPCDS/ -hiveconf DBNAME=tpcds
 # 4. Generate Parquet data (사이즈에 따라 시간이 많이 소요됨)
    hive -i settings.hql -f ddl/createAllParquetTables.hql -hiveconf PARQUETDBNAME=tpcds_pqt -hiveconf SOURCE=tpcds
-# 5. Run test queries 
+# 5. Run a test querie
    beeline -u "jdbc:hive2://\`hostname -f\`:10002/tpcds_pqt;transportMode=http" -n "" -p "" -i settings.hql -f queries/query12.sql <br>
    (주의 : 원본에는 10001 포트로 되어 있으나 10002로 수정하여 실행할 것. 10001은 Hive용 포트이고 10002는 Spark용 포트인데 10001로실행할 경우 SQL의 Parsing 에러 발생. 테스트 쿼리가 Hive Syntax에 맞지 않는 것으로 보임)
 # 5. run the queries with Spark (10회 실행)
