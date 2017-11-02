@@ -17,7 +17,8 @@ Spark 1.6 버전에서 테스트 쿼리의 에러가 발행하며 그 이유는 
    hive -i settings.hql -f ddl/createAllParquetTables.hql -hiveconf PARQUETDBNAME=tpcds_pqt -hiveconf SOURCE=tpcds
 # 5. Run a test querie
    beeline -u "jdbc:hive2://\`hostname -f\`:10002/tpcds_pqt;transportMode=http" -n "" -p "" -i settings.hql -f queries/query12.sql <br>
-   (주의 : 원본에는 10001 포트로 되어 있으나 10002로 수정하여 실행할 것. 10001은 Hive용 포트이고 10002는 Spark용 포트인데 10001로 실행할 경우 SQL의 Parsing 에러 발생. 테스트 쿼리가 SparkQL Syntax라 Hive Syntax에 맞지 않는 것으로 보임)
+   
+   (주의 : 원본에는 10001 포트로 되어 있으나 10002로 수정하여 실행할 것. 10001은 Hive용 포트이고 10002는 Spark용 포트인데 10001로 실행할 경우 SQL의 Parsing 에러 발생. 테스트 쿼리가 SparkQL Syntax라 Hive Syntax에 맞지 않는 것으로 보임)
 # 5. run the queries with Spark (10회 실행)
    for f in queries/*.sql; do for i in {1..10} ; do STARTTIME="`date +%s`";  beeline -u "jdbc:hive2://\`hostname -f\`:10002/tpcds_pqt;transportMode=http" -i sparksettings.hql -f $f  > $f.run_$i.out 2>&1 ; SUCCESS=$? ; ENDTIME="`date +%s`"; echo "$f,$i,$SUCCESS,$STARTTIME,$ENDTIME,$(($ENDTIME-$STARTTIME))" >> times_pqt.csv; done; done; <br>
 
