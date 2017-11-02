@@ -3,7 +3,7 @@
 을 참고하여 Orc 대신 Parquet 파일로 변환하여 수행하는 코드로 수정한 버전입니다.
 
 * 실행 환경 : Spark 2.1 버전의 클러스터
-* 데이터 포맷 : Parquet
+* 데이터 포맷 : Parquet  
 
 (주의) <br>
 Spark 1.6 버전에서 테스트 쿼리의 에러가 발행하며 그 이유는 Spark에서 Hive Metastore 정보를 인식하지 못하기 때문임. 그 원인은 Spark 1.6 버전에서 Thrift server의 기본값이 multi-session mode인데 이로 인해 Hive에서 생성한 Temp table을 Spark에서 인식 못하는 것임.
